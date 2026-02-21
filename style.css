@@ -49,7 +49,71 @@ nav ul li a{
 nav ul li a:hover{
     color:#fbc531;
 }
+/* Hide the actual checkbox */
+#menu-bar {
+    display: none;
+}
 
+/* Burger Icon Styling */
+.menu-icon {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-icon .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* RESPONSIVE LOGIC */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: flex; /* Show burger on mobile */
+    }
+
+    nav {
+        position: relative;
+    }
+
+    .nav-links {
+        display: none; /* Hide links by default */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #0a3d62; /* Match your header color */
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+        z-index: 100;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+        margin-left: 0; /* Reset desktop margin */
+    }
+
+    /* THE MAGIC: When checkbox is checked, show the menu */
+    #menu-bar:checked ~ .nav-links {
+        display: flex;
+    }
+    
+    /* Optional: Animate burger to 'X' when checked */
+    #menu-bar:checked + .menu-icon .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    #menu-bar:checked + .menu-icon .bar:nth-child(2) {
+        opacity: 0;
+    }
+    #menu-bar:checked + .menu-icon .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
 /* HERO */
 .hero{
     background:url("Images/home.png") center/cover no-repeat;
@@ -310,4 +374,5 @@ footer{
     0%,74%   {background:rgba(255,255,255,0.4);}
     75%,95%  {background:#fbc531;}
     100%     {background:rgba(255,255,255,0.4);}
+
 }
